@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.rest.model;
 
 import java.util.List;
 
@@ -7,23 +7,30 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Airport {
+public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String code;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
 
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
 
-    @ManyToMany(mappedBy = "airports")
+    @ManyToMany
+    @JoinTable(
+        name = "passenger_aircraft",
+        joinColumns = @JoinColumn(name = "passenger_id"),
+        inverseJoinColumns = @JoinColumn(name = "aircraft_id")
+    )
     private List<Aircraft> aircraft;
 
     // Getters and Setters
@@ -36,20 +43,28 @@ public class Airport {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getCode() {
-        return code;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public City getCity() {

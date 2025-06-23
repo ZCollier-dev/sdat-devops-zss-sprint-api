@@ -1,7 +1,7 @@
-package org.example.controller;
+package org.example.rest.controller;
 
-import org.example.repository.CityRepository;
-import org.example.model.City;
+import org.example.rest.repository.CityRepository;
+import org.example.rest.model.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

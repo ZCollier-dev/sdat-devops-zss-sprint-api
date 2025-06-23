@@ -1,11 +1,11 @@
-package org.example.controller;
+package org.example.rest.controller;
 
-import org.example.model.Airport;
-import org.example.model.Aircraft;
-import org.example.model.Passenger;
-import org.example.repository.AirportRepository;
-import org.example.repository.AircraftRepository;
-import org.example.repository.PassengerRepository;
+import org.example.rest.model.Airport;
+import org.example.rest.model.Aircraft;
+import org.example.rest.model.Passenger;
+import org.example.rest.repository.AirportRepository;
+import org.example.rest.repository.AircraftRepository;
+import org.example.rest.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

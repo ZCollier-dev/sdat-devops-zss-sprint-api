@@ -1,7 +1,7 @@
-package org.example.controller;
+package org.example.rest.controller;
 
-import org.example.model.Airport;
-import org.example.repository.AirportRepository;
+import org.example.rest.model.Airport;
+import org.example.rest.repository.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
