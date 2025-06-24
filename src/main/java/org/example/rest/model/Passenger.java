@@ -3,83 +3,46 @@ package org.example.rest.model;
 import java.util.List;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Passenger {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
+    private String name;     // matches “name” in data.sql
+    private String email;    // matches “email” in data.sql
 
-    @ManyToOne
-    @JoinColumn(name = "city_id")
-    private City city;
-
-    @ManyToMany
-    @JoinTable(
-        name = "passenger_aircraft",
-        joinColumns = @JoinColumn(name = "passenger_id"),
-        inverseJoinColumns = @JoinColumn(name = "aircraft_id")
-    )
+    /** join‐table passenger ⇄ aircraft */
+    @ManyToMany(mappedBy = "passengers")
     private List<Aircraft> aircraft;
 
-    // Getters and Setters
+    /** join‐table passenger ⇄ airport */
+    @ManyToMany
+    @JoinTable(
+        name = "passenger_airport",
+        joinColumns = @JoinColumn(name = "passenger_id"),
+        inverseJoinColumns = @JoinColumn(name = "airport_id")
+    )
+    private List<Airport> airports;
 
-    public Long getId() {
-        return id;
-    }
+    // getters / setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public List<Aircraft> getAircraft() { return aircraft; }
+    public void setAircraft(List<Aircraft> aircraft) { this.aircraft = aircraft; }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public List<Aircraft> getAircraft() {
-        return aircraft;
-    }
-
-    public void setAircraft(List<Aircraft> aircraft) {
-        this.aircraft = aircraft;
-    }
+    public List<Airport> getAirports() { return airports; }
+    public void setAirports(List<Airport> airports) { this.airports = airports; }
 }

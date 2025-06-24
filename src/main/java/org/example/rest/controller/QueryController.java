@@ -1,60 +1,37 @@
 package org.example.rest.controller;
 
-import org.example.rest.model.Airport;
-import org.example.rest.model.Aircraft;
-import org.example.rest.model.Passenger;
-import org.example.rest.repository.AirportRepository;
-import org.example.rest.repository.AircraftRepository;
-import org.example.rest.repository.PassengerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
 import java.util.List;
 
+import org.example.rest.service.QueryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 @RestController
-@RequestMapping("/query")
+@RequestMapping("/api")
 public class QueryController {
 
     @Autowired
-    private AirportRepository airportRepository;
+    private QueryService queryService;
 
-    @Autowired
-    private PassengerRepository passengerRepository;
-
-    @Autowired
-    private AircraftRepository aircraftRepository;
-
-    // 1. What airports are there in each city?
-    @GetMapping("/cities/{cityId}/airports")
-    public List<Airport> getAirportsByCity(@PathVariable Long cityId) {
-        return airportRepository.findByCityId(cityId);
+    @GetMapping("/airports/by-city")
+    public List<String> getAirportsByCity() {
+        return queryService.getAirportsByCity();
     }
 
-    // 2. What aircraft has each passenger flown on?
-    @GetMapping("/passengers/{passengerId}/aircraft")
-    public List<Aircraft> getAircraftByPassenger(@PathVariable Long passengerId) {
-        return passengerRepository.findById(passengerId)
-                .map(Passenger::getAircraft)
-                .orElse(Collections.emptyList());
+    @GetMapping("/aircrafts/by-passenger")
+    public List<String> getAircraftByPassenger() {
+        return queryService.getAircraftByPassenger();
     }
 
-    // 3. What airports do aircraft take off from and land at?
-    @GetMapping("/aircraft/{aircraftId}/airports")
-    public List<Airport> getAirportsForAircraft(@PathVariable Long aircraftId) {
-        return aircraftRepository.findById(aircraftId)
-                .map(Aircraft::getAirports)
-                .orElse(Collections.emptyList());
+    @GetMapping("/airports/by-aircraft")
+    public List<String> getAirportsByAircraft() {
+        return queryService.getAirportsByAircraft();
     }
 
-    // 4. What airports have passengers used?
-    @GetMapping("/passengers/{passengerId}/airports")
-    public List<Airport> getAirportsUsedByPassenger(@PathVariable Long passengerId) {
-        return passengerRepository.findById(passengerId)
-                .map(passenger -> passenger.getAircraft().stream()
-                        .flatMap(ac -> ac.getAirports().stream())
-                        .distinct()
-                        .toList())
-                .orElse(Collections.emptyList());
+    @GetMapping("/airports/by-passenger")
+    public List<String> getAirportsByPassenger() {
+        return queryService.getAirportsByPassenger();
     }
 }
