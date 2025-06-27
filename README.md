@@ -4,4 +4,4 @@ The backend API for the Midterm Sprint - Keyin College, Semester 4 of Software D
 
 AUTHORS: Zachary Collier, Kyle/Scarlett Budgell, Sarah Elizabeth Murphy
 
-VIDEO: /coming soon
+VIDEO: https://youtu.be/flXM-lVeFkQ
