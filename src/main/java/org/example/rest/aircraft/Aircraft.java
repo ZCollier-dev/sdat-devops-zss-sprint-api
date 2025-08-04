@@ -1,4 +1,4 @@
-package org.example.rest.model;
+package org.example.rest.aircraft;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import org.example.rest.airport.Airport;
+import org.example.rest.passenger.Passenger;
 
 @Entity
 public class Aircraft {

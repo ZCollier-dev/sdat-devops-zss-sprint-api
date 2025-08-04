@@ -1,6 +1,5 @@
-package org.example.rest.repository;
+package org.example.rest.aircraft;
 
-import org.example.rest.model.Aircraft;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AircraftRepository extends JpaRepository<Aircraft, Long> {}

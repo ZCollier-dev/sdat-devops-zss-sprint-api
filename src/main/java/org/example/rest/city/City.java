@@ -1,4 +1,4 @@
-package org.example.rest.model;
+package org.example.rest.city;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import org.example.rest.airport.Airport;
 
 @Entity
 public class City {

@@ -1,6 +1,5 @@
-package org.example.rest.repository;
+package org.example.rest.city;
 
-import org.example.rest.model.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CityRepository extends JpaRepository<City, Long> {}
