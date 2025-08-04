@@ -1,7 +1,5 @@
-package org.example.rest.controller;
+package org.example.rest.airport;
 
-import org.example.rest.model.Airport;
-import org.example.rest.repository.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,26 +10,25 @@ import java.util.List;
 public class AirportController {
 
     @Autowired
-    private AirportRepository airportRepository;
+    private AirportService airportService;
 
     @GetMapping
     public List<Airport> getAll() {
-        return airportRepository.findAll();
+        return airportService.getAllAirports();
     }
 
     @PostMapping
     public Airport add(@RequestBody Airport airport) {
-        return airportRepository.save(airport);
+        return airportService.addAirport(airport);
     }
 
     @PutMapping("/{id}")
     public Airport update(@PathVariable Long id, @RequestBody Airport airport) {
-        airport.setId(id);
-        return airportRepository.save(airport);
+        return airportService.updateAirport(id, airport);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        airportRepository.deleteById(id);
+        airportService.deleteAirport(id);
     }
 }

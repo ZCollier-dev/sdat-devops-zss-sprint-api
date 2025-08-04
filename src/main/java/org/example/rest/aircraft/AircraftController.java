@@ -1,7 +1,5 @@
-package org.example.rest.controller;
+package org.example.rest.aircraft;
 
-import org.example.rest.model.Aircraft;
-import org.example.rest.repository.AircraftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,26 +10,25 @@ import java.util.List;
 public class AircraftController {
 
     @Autowired
-    private AircraftRepository aircraftRepository;
+    private AircraftService aircraftService;
 
     @GetMapping
     public List<Aircraft> getAll() {
-        return aircraftRepository.findAll();
+        return aircraftService.getAllAircraft();
     }
 
     @PostMapping
     public Aircraft add(@RequestBody Aircraft aircraft) {
-        return aircraftRepository.save(aircraft);
+        return aircraftService.addAircraft(aircraft);
     }
 
     @PutMapping("/{id}")
     public Aircraft update(@PathVariable Long id, @RequestBody Aircraft aircraft) {
-        aircraft.setId(id);
-        return aircraftRepository.save(aircraft);
+        return aircraftService.updateAircraft(id, aircraft);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        aircraftRepository.deleteById(id);
+        aircraftService.deleteAircraft(id);
     }
 }

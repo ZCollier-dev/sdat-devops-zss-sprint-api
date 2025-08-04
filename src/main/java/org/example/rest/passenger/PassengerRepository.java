@@ -1,6 +1,5 @@
-package org.example.rest.repository;
+package org.example.rest.passenger;
 
-import org.example.rest.model.Passenger;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PassengerRepository extends JpaRepository<Passenger, Long> {}

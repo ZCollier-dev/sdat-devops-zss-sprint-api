@@ -1,15 +1,15 @@
-package org.example.rest.service;
+package org.example.rest.query;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.rest.model.Aircraft;
-import org.example.rest.model.Airport;
-import org.example.rest.model.City;
-import org.example.rest.model.Passenger;
-import org.example.rest.repository.AircraftRepository;
-import org.example.rest.repository.CityRepository;
-import org.example.rest.repository.PassengerRepository;
+import org.example.rest.aircraft.Aircraft;
+import org.example.rest.airport.Airport;
+import org.example.rest.city.City;
+import org.example.rest.passenger.Passenger;
+import org.example.rest.aircraft.AircraftRepository;
+import org.example.rest.city.CityRepository;
+import org.example.rest.passenger.PassengerRepository;
 import org.springframework.stereotype.Service;
 
 @Service

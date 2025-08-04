@@ -1,8 +1,7 @@
-package org.example.rest.repository;
+package org.example.rest.airport;
 
 import java.util.List;
 
-import org.example.rest.model.Airport;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AirportRepository extends JpaRepository<Airport, Long> {

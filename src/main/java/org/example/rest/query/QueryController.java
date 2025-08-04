@@ -1,8 +1,7 @@
-package org.example.rest.controller;
+package org.example.rest.query;
 
 import java.util.List;
 
-import org.example.rest.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ public class QueryController {
         return queryService.getAirportsByCity();
     }
 
-    @GetMapping("/aircrafts/by-passenger")
+    @GetMapping("/aircraft/by-passenger")
     public List<String> getAircraftByPassenger() {
         return queryService.getAircraftByPassenger();
     }

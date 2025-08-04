@@ -1,7 +1,5 @@
-package org.example.rest.controller;
+package org.example.rest.passenger;
 
-import org.example.rest.model.Passenger;
-import org.example.rest.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,26 +10,25 @@ import java.util.List;
 public class PassengerController {
 
     @Autowired
-    private PassengerRepository passengerRepository;
+    private PassengerService passengerService;
 
     @GetMapping
     public List<Passenger> getAll() {
-        return passengerRepository.findAll();
+        return passengerService.getAllPassengers();
     }
 
     @PostMapping
     public Passenger add(@RequestBody Passenger passenger) {
-        return passengerRepository.save(passenger);
+        return passengerService.addPassenger(passenger);
     }
 
     @PutMapping("/{id}")
     public Passenger update(@PathVariable Long id, @RequestBody Passenger passenger) {
-        passenger.setId(id);
-        return passengerRepository.save(passenger);
+        return passengerService.updatePassenger(id, passenger);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        passengerRepository.deleteById(id);
+        passengerService.deletePassenger(id);
     }
 }
