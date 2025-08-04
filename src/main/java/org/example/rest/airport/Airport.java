@@ -25,14 +25,6 @@ public class Airport {
     @JoinColumn(name = "city_id")
     private City city;
 
-    /** join‐table side for aircraft ⇄ airport */
-    @ManyToMany(mappedBy = "airports")
-    private List<Aircraft> aircraft;
-
-    /** join‐table side for passenger ⇄ airport */
-    @ManyToMany(mappedBy = "airports")
-    private List<Passenger> passengers;
-
     // getters / setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -45,10 +37,4 @@ public class Airport {
 
     public City getCity() { return city; }
     public void setCity(City city) { this.city = city; }
-
-    public List<Aircraft> getAircraft() { return aircraft; }
-    public void setAircraft(List<Aircraft> aircraft) { this.aircraft = aircraft; }
-
-    public List<Passenger> getPassengers() { return passengers; }
-    public void setPassengers(List<Passenger> passengers) { this.passengers = passengers; }
 }
