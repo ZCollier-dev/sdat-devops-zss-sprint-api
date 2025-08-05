@@ -5,7 +5,7 @@ import java.util.List;
 
 @Service
 public class AirlineService {
-    private final AirlineRepository airlineRepo;
+    private AirlineRepository airlineRepo;
 
     public AirlineService(AirlineRepository airlineRepo) {
         this.airlineRepo = airlineRepo;
