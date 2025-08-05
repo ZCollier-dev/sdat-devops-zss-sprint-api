@@ -25,6 +25,14 @@ public class Passenger {
     )
     private List<Airport> airports;
 
+    @ManyToMany
+    @JoinTable(
+        name = "passenger_aircraft",
+        joinColumns = @JoinColumn(name = "passenger_id"),
+        inverseJoinColumns = @JoinColumn(name = "aircraft_id")
+    )
+    private List<Aircraft> aircraft;
+
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
@@ -41,6 +49,14 @@ public class Passenger {
 
     public List<Airport> getAirports() { return airports; }
     public void setAirports(List<Airport> airports) { this.airports = airports; }
+
+    public List<Aircraft> getAircraft() {
+        return aircraft;
+    }
+
+    public void setAircraft(List<Aircraft> aircraft) {
+        this.aircraft = aircraft;
+    }
 
     public City getCity(){
         return city;
