@@ -2,18 +2,15 @@ package org.example.rest.airport;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import org.example.rest.aircraft.Aircraft;
 import org.example.rest.city.City;
+import org.example.rest.gate.Gate;
 import org.example.rest.passenger.Passenger;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Airport {
@@ -39,6 +36,10 @@ public class Airport {
     @ManyToMany(mappedBy = "airports")
     @JsonIgnore // Avoid loops when serializing aircraft
     private List<Aircraft> aircraft;
+
+    @OneToMany(mappedBy = "gate", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Gate> gates;
 
     // Getters / Setters
     public Long getId() { return id; }

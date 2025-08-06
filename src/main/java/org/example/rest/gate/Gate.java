@@ -1,5 +1,6 @@
 package org.example.rest.gate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.example.rest.airport.Airport;
 
 import jakarta.persistence.*;
@@ -15,14 +16,8 @@ public class Gate {
 
     @ManyToOne
     @JoinColumn(name = "airport_id")
+    @JsonBackReference
     private Airport airport;
-
-    public Gate() {}
-
-    public Gate(String gateNumber, Airport airport) {
-        this.gateNumber = gateNumber;
-        this.airport = airport;
-    }
 
     public Long getId() {
         return id;

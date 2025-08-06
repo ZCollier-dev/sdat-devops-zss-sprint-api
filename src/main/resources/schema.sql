@@ -39,6 +39,13 @@ CREATE TABLE passenger (
     FOREIGN KEY (city_id) REFERENCES city(id)
 );
 
+CREATE TABLE gate (
+    id INT PRIMARY KEY,
+    gate_number VARCHAR(10),
+    airport_id INT,
+    FOREIGN KEY (airport_id) REFERENCES airport(id)
+);
+
 CREATE TABLE passenger_aircraft (
     passenger_id INT,
     aircraft_id INT,
