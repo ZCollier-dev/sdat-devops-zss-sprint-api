@@ -2,6 +2,7 @@ package org.example.rest.passenger;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.example.rest.aircraft.Aircraft;
 import org.example.rest.airport.Airport;
@@ -23,6 +24,7 @@ public class Passenger {
         joinColumns = @JoinColumn(name = "passenger_id"),
         inverseJoinColumns = @JoinColumn(name = "airport_id")
     )
+    @JsonIgnore
     private List<Airport> airports;
 
     @ManyToMany
@@ -31,6 +33,7 @@ public class Passenger {
         joinColumns = @JoinColumn(name = "passenger_id"),
         inverseJoinColumns = @JoinColumn(name = "aircraft_id")
     )
+    @JsonIgnore
     private List<Aircraft> aircraft;
 
     @ManyToOne

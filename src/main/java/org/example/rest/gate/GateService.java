@@ -9,10 +9,6 @@ public class GateService {
     
     private GateRepository gateRepo;
 
-    public GateService(GateRepository gateRepo) {
-        this.gateRepo = gateRepo;
-    }
-
     public List<Gate> getAllGates() {
         return gateRepo.findAll();
     }
