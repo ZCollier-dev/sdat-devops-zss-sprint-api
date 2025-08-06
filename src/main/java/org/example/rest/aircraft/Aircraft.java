@@ -53,4 +53,11 @@ public class Aircraft {
 
     public List<Airport> getAirports() { return airports; }
     public void setAirports(List<Airport> airports) { this.airports = airports; }
+
+    public Airline getAirline(){
+        return airline;
+    }
+    public void setAirline(Airline airline){
+        this.airline = airline;
+    }
 }

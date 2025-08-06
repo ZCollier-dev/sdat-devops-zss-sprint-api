@@ -23,7 +23,6 @@ public class Airline {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -31,7 +30,6 @@ public class Airline {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -39,8 +37,14 @@ public class Airline {
     public String getCode() {
         return code;
     }
-
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public List<Aircraft> getAircraft(){
+        return aircraft;
+    }
+    public void setAircraft(List<Aircraft> aircraft){
+        this.aircraft = aircraft;
     }
 }

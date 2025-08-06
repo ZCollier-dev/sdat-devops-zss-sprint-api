@@ -59,4 +59,11 @@ public class Airport {
 
     public List<Aircraft> getAircraft() { return aircraft; }
     public void setAircraft(List<Aircraft> aircraft) { this.aircraft = aircraft; }
+
+    public List<Gate> getGates(){
+        return gates;
+    }
+    public void setGates(List<Gate> gates){
+        this.gates = gates;
+    }
 }
