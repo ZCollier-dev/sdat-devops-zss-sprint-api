@@ -7,10 +7,6 @@ import java.util.List;
 public class AirlineService {
     private AirlineRepository airlineRepo;
 
-    public AirlineService(AirlineRepository airlineRepo) {
-        this.airlineRepo = airlineRepo;
-    }
-
     public List<Airline> getAllAirlines() {
         return airlineRepo.findAll();
     }

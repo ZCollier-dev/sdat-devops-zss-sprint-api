@@ -2,11 +2,8 @@ package org.example.rest.aircraft;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
+import org.example.rest.airline.Airline;
 import org.example.rest.airport.Airport;
 import org.example.rest.passenger.Passenger;
 
@@ -36,6 +33,10 @@ public class Aircraft {
         inverseJoinColumns = @JoinColumn(name = "airport_id")
     )
     private List<Airport> airports;
+
+    @ManyToOne
+    @JoinColumn(name = "airline_id")
+    private Airline airline;
 
     // getters / setters
     public Long getId() { return id; }

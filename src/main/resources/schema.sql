@@ -28,7 +28,9 @@ CREATE TABLE airport (
 CREATE TABLE aircraft (
     id INT PRIMARY KEY,
     model VARCHAR(255),
-    capacity INT
+    capacity INT,
+    airline_id INT,
+    FOREIGN KEY (airline_id) REFERENCES airline(id)
 );
 
 CREATE TABLE passenger (
@@ -44,6 +46,12 @@ CREATE TABLE gate (
     gate_number VARCHAR(10),
     airport_id INT,
     FOREIGN KEY (airport_id) REFERENCES airport(id)
+);
+
+CREATE TABLE airline (
+    id INT PRIMARY KEY,
+    name VARCHAR(255),
+    code VARCHAR(10)
 );
 
 CREATE TABLE passenger_aircraft (

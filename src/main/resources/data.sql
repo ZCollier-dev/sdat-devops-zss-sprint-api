@@ -7,8 +7,8 @@ INSERT INTO airport (id, name, code, city_id) VALUES (1, 'Toronto Pearson Intl',
 INSERT INTO airport (id, name, code, city_id) VALUES (2, 'Vancouver Intl', 'YVR', 2);
 
 -- Aircraft
-INSERT INTO aircraft (id, model, capacity) VALUES (1, 'Boeing 737', 180);
-INSERT INTO aircraft (id, model, capacity) VALUES (2, 'Airbus A320', 150);
+INSERT INTO aircraft (id, model, capacity, airline_id) VALUES (1, 'Boeing 737', 180, 1);
+INSERT INTO aircraft (id, model, capacity, airline_id) VALUES (2, 'Airbus A320', 150, 2);
 
 -- Passengers
 INSERT INTO passenger (id, name, email) VALUES (1, 'Scarlett Budgell', 'scar@example.com', 1);
@@ -19,6 +19,10 @@ INSERT INTO gate (id, gate_number, airport_id) VALUES (1, 'A12', 1);
 INSERT INTO gate (id, gate_number, airport_id) VALUES (2, 'A13', 1);
 INSERT INTO gate (id, gate_number, airport_id) VALUES (3, 'B2', 2);
 INSERT INTO gate (id, gate_number, airport_id) VALUES (4, 'B7', 2);
+
+-- Airlines
+INSERT INTO airline (id, name, code) VALUES (1, 'Air Canada', 'AC');
+INSERT INTO airline (id, name, code) VALUES (2, 'WestJet', 'WJ');
 
 -- Join Tables (you may need to adjust names based on your @ManyToMany setup)
 
