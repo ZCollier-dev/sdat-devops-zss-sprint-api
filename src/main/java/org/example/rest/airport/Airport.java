@@ -37,7 +37,7 @@ public class Airport {
     @JsonIgnore // Avoid loops when serializing aircraft
     private List<Aircraft> aircraft;
 
-    @OneToMany(mappedBy = "gate", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "airports", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Gate> gates;
 
