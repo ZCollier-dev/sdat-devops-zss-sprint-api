@@ -35,6 +35,8 @@ CREATE TABLE passenger (
     id INT PRIMARY KEY,
     name VARCHAR(255),
     email VARCHAR(255)
+    city_id INT,
+    FOREIGN KEY (city_id) REFERENCES city(id)
 );
 
 CREATE TABLE passenger_aircraft (

@@ -2,6 +2,7 @@ package org.example.rest.city;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.example.rest.airport.Airport;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -10,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import org.example.rest.passenger.Passenger;
 
 @Entity
 public class City {
@@ -24,6 +26,10 @@ public class City {
     @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Airport> airports;
+
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Passenger> passengers;
 
     // Getters and Setters
     public Long getId() { return id; }
@@ -40,4 +46,11 @@ public class City {
 
     public List<Airport> getAirports() { return airports; }
     public void setAirports(List<Airport> airports) { this.airports = airports; }
+
+    public List<Passenger> getPassengers(){
+        return passengers;
+    }
+    public void setPassengers(List<Passenger> passengers){
+        this.passengers = passengers;
+    }
 }

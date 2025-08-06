@@ -11,8 +11,8 @@ INSERT INTO aircraft (id, model, capacity) VALUES (1, 'Boeing 737', 180);
 INSERT INTO aircraft (id, model, capacity) VALUES (2, 'Airbus A320', 150);
 
 -- Passengers
-INSERT INTO passenger (id, name, email) VALUES (1, 'Scarlett Budgell', 'scar@example.com');
-INSERT INTO passenger (id, name, email) VALUES (2, 'Alex Mercer', 'alex@example.com');
+INSERT INTO passenger (id, name, email) VALUES (1, 'Scarlett Budgell', 'scar@example.com', 1);
+INSERT INTO passenger (id, name, email) VALUES (2, 'Alex Mercer', 'alex@example.com', 2);
 
 -- Join Tables (you may need to adjust names based on your @ManyToMany setup)
 
