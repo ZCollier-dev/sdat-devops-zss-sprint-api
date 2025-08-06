@@ -22,7 +22,7 @@ INSERT INTO gate (id, gate_number, airport_id) VALUES (4, 'B7', 2);
 
 -- Airlines
 INSERT INTO airline (id, name, code) VALUES (1, 'Air Canada', 'AC');
-INSERT INTO airline (id, name, code) VALUES (2, 'WestJet', 'WJ');
+INSERT INTO airline (id, name, code) VALUES (2, 'Delta', 'DL');
 
 -- Join Tables (you may need to adjust names based on your @ManyToMany setup)
 
