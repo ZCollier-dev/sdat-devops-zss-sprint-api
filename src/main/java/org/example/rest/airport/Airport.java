@@ -5,7 +5,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.example.rest.aircraft.Aircraft;
+import org.example.rest.arrival.Arrival;
 import org.example.rest.city.City;
+import org.example.rest.departure.Departure;
 import org.example.rest.gate.Gate;
 import org.example.rest.passenger.Passenger;
 
@@ -37,9 +39,15 @@ public class Airport {
     @JsonIgnore // Avoid loops when serializing aircraft
     private List<Aircraft> aircraft;
 
-    @OneToMany(mappedBy = "airports", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Gate> gates;
+
+    @OneToMany(mappedBy = "airport")
+    private List<Departure> departures;
+
+    @OneToMany(mappedBy = "airport")
+    private List<Arrival> arrivals;
 
     // Getters / Setters
     public Long getId() { return id; }

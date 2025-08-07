@@ -17,11 +17,13 @@ public class Departure {
     private String status;
 
     @OneToOne
+    @JoinColumn(name = "flight_id")
     @JsonIgnore
     private Flight flight;
 
     // Destination Airport
     @OneToMany
+    @JoinColumn(name = "airport_id")
     private Airport airport;
 
     public Long getId(){

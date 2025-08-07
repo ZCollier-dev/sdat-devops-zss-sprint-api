@@ -15,15 +15,18 @@ public class Flight {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "departure_id")
     private Departure departure;
 
     @OneToOne
+    @JoinColumn(name = "arrival_id")
     private Arrival arrival;
 
     @OneToMany
+    @JoinColumn(name = "aircraft_id")
     private Aircraft aircraft;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "flights")
     private List<Passenger> passengers;
 
     public Long getId(){
