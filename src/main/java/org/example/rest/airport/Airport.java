@@ -30,12 +30,12 @@ public class Airport {
     private City city;
 
     /** Many airports can be visited by many passengers */
-    @ManyToMany(mappedBy = "airports")
+    @ManyToMany(mappedBy = "airports", fetch = FetchType.LAZY)
     @JsonIgnore // Avoid loops when serializing passengers
     private List<Passenger> passengers;
 
     /** Many airports can be visited by many aircraft */
-    @ManyToMany(mappedBy = "airports")
+    @ManyToMany(mappedBy = "airports", fetch = FetchType.LAZY)
     @JsonIgnore // Avoid loops when serializing aircraft
     private List<Aircraft> aircraft;
 
@@ -43,10 +43,12 @@ public class Airport {
     @JsonManagedReference
     private List<Gate> gates;
 
-    @OneToMany(mappedBy = "airport")
+    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Departure> departures;
 
-    @OneToMany(mappedBy = "airport")
+    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Arrival> arrivals;
 
     // Getters / Setters
@@ -73,5 +75,19 @@ public class Airport {
     }
     public void setGates(List<Gate> gates){
         this.gates = gates;
+    }
+
+    public List<Departure> getDepartures(){
+        return departures;
+    }
+    public void setDepartures(List<Departure> departures){
+        this.departures = departures;
+    }
+
+    public List<Arrival> getArrivals(){
+        return arrivals;
+    }
+    public void setArrivals(List<Arrival> arrivals){
+        this.arrivals = arrivals;
     }
 }

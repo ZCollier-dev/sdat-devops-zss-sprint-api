@@ -1,5 +1,6 @@
 package org.example.rest.flight;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.example.rest.aircraft.Aircraft;
 import org.example.rest.arrival.Arrival;
@@ -27,6 +28,7 @@ public class Flight {
     private Aircraft aircraft;
 
     @ManyToMany(mappedBy = "flights")
+    @JsonIgnore
     private List<Passenger> passengers;
 
     public Long getId(){

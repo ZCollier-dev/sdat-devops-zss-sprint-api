@@ -1,5 +1,6 @@
 package org.example.rest.departure;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.example.rest.airport.Airport;
@@ -24,6 +25,7 @@ public class Departure {
     // Destination Airport
     @OneToMany
     @JoinColumn(name = "airport_id")
+    @JsonBackReference
     private Airport airport;
 
     public Long getId(){
