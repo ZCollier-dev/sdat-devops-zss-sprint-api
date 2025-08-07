@@ -5,7 +5,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.example.rest.aircraft.Aircraft;
+import org.example.rest.arrival.Arrival;
 import org.example.rest.city.City;
+import org.example.rest.departure.Departure;
 import org.example.rest.gate.Gate;
 import org.example.rest.passenger.Passenger;
 
@@ -28,18 +30,26 @@ public class Airport {
     private City city;
 
     /** Many airports can be visited by many passengers */
-    @ManyToMany(mappedBy = "airports")
+    @ManyToMany(mappedBy = "airports", fetch = FetchType.LAZY)
     @JsonIgnore // Avoid loops when serializing passengers
     private List<Passenger> passengers;
 
     /** Many airports can be visited by many aircraft */
-    @ManyToMany(mappedBy = "airports")
+    @ManyToMany(mappedBy = "airports", fetch = FetchType.LAZY)
     @JsonIgnore // Avoid loops when serializing aircraft
     private List<Aircraft> aircraft;
 
-    @OneToMany(mappedBy = "airports", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Gate> gates;
+
+    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Departure> departures;
+
+    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Arrival> arrivals;
 
     // Getters / Setters
     public Long getId() { return id; }
@@ -65,5 +75,19 @@ public class Airport {
     }
     public void setGates(List<Gate> gates){
         this.gates = gates;
+    }
+
+    public List<Departure> getDepartures(){
+        return departures;
+    }
+    public void setDepartures(List<Departure> departures){
+        this.departures = departures;
+    }
+
+    public List<Arrival> getArrivals(){
+        return arrivals;
+    }
+    public void setArrivals(List<Arrival> arrivals){
+        this.arrivals = arrivals;
     }
 }

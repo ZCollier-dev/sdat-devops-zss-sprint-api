@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import org.example.rest.aircraft.Aircraft;
 import org.example.rest.airport.Airport;
 import org.example.rest.city.City;
+import org.example.rest.flight.Flight;
 
 @Entity
 public class Passenger {
@@ -29,12 +30,12 @@ public class Passenger {
 
     @ManyToMany
     @JoinTable(
-        name = "passenger_aircraft",
+        name = "passenger_flight",
         joinColumns = @JoinColumn(name = "passenger_id"),
-        inverseJoinColumns = @JoinColumn(name = "aircraft_id")
+        inverseJoinColumns = @JoinColumn(name = "flight_id")
     )
     @JsonIgnore
-    private List<Aircraft> aircraft;
+    private List<Flight> flights;
 
     @ManyToOne
     @JoinColumn(name = "city_id")
@@ -53,12 +54,11 @@ public class Passenger {
     public List<Airport> getAirports() { return airports; }
     public void setAirports(List<Airport> airports) { this.airports = airports; }
 
-    public List<Aircraft> getAircraft() {
-        return aircraft;
+    public List<Flight> getFlights() {
+        return flights;
     }
-
-    public void setAircraft(List<Aircraft> aircraft) {
-        this.aircraft = aircraft;
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
 
     public City getCity(){

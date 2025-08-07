@@ -6,6 +6,7 @@ import java.util.List;
 import org.example.rest.aircraft.Aircraft;
 import org.example.rest.airport.Airport;
 import org.example.rest.city.City;
+import org.example.rest.flight.Flight;
 import org.example.rest.passenger.Passenger;
 import org.example.rest.aircraft.AircraftRepository;
 import org.example.rest.city.CityRepository;
@@ -32,8 +33,8 @@ public class QueryService {
         List<String> out = new ArrayList<>();
         for (City c : cityRepo.findAll()) {
             String names = c.getAirports().stream()
-                            .map(Airport::getName)
-                            .reduce((a,b)->a+", "+b).orElse("No airports");
+                    .map(Airport::getName)
+                    .reduce((a,b)->a+", "+b).orElse("No airports");
             out.add(c.getName() + ": " + names);
         }
         return out;
@@ -43,9 +44,10 @@ public class QueryService {
     public List<String> getAircraftByPassenger() {
         List<String> out = new ArrayList<>();
         for (Passenger p : passengerRepo.findAll()) {
-            String planes = p.getAircraft().stream()
-                             .map(Aircraft::getModel)
-                             .reduce((a,b)->a+", "+b).orElse("None");
+            String planes = p.getFlights().stream()
+                    .map(Flight::getAircraft)
+                    .map(Aircraft::getModel)
+                    .reduce((a,b)->a+", "+b).orElse("None");
             out.add(p.getName() + ": " + planes);
         }
         return out;
@@ -56,8 +58,8 @@ public class QueryService {
         List<String> out = new ArrayList<>();
         for (Aircraft a : aircraftRepo.findAll()) {
             String airports = a.getAirports().stream()
-                               .map(Airport::getName)
-                               .reduce((x,y)->x+", "+y).orElse("None");
+                    .map(Airport::getName)
+                    .reduce((x,y)->x+", "+y).orElse("None");
             out.add(a.getModel() + ": " + airports);
         }
         return out;
@@ -68,8 +70,8 @@ public class QueryService {
         List<String> out = new ArrayList<>();
         for (Passenger p : passengerRepo.findAll()) {
             String airports = p.getAirports().stream()
-                               .map(Airport::getCode)
-                               .reduce((x,y)->x+", "+y).orElse("None");
+                    .map(Airport::getCode)
+                    .reduce((x,y)->x+", "+y).orElse("None");
             out.add(p.getName() + ": " + airports);
         }
         return out;

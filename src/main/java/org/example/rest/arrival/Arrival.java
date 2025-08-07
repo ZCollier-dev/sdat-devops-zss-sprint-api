@@ -1,10 +1,8 @@
 package org.example.rest.arrival;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import org.example.rest.airport.Airport;
 import org.example.rest.flight.Flight;
 
@@ -20,11 +18,14 @@ public class Arrival {
     private String status;
 
     @OneToOne
+    @JoinColumn(name = "flight_id")
     @JsonIgnore
     private Flight flight;
 
     // Origin Airport
     @OneToMany
+    @JoinColumn(name = "airport_id")
+    @JsonBackReference
     private Airport airport;
 
     public Long getId(){

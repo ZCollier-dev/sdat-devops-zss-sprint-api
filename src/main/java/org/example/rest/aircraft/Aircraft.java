@@ -16,15 +16,6 @@ public class Aircraft {
     private String model;     // matches “model” in data.sql
     private int capacity;     // matches “capacity” in data.sql
 
-    /** join‐table aircraft ⇄ passenger */
-    @ManyToMany
-    @JoinTable(
-        name = "passenger_aircraft",
-        joinColumns = @JoinColumn(name = "aircraft_id"),
-        inverseJoinColumns = @JoinColumn(name = "passenger_id")
-    )
-    private List<Passenger> passengers;
-
     /** join‐table aircraft ⇄ airport */
     @ManyToMany
     @JoinTable(
@@ -47,9 +38,6 @@ public class Aircraft {
 
     public int getCapacity() { return capacity; }
     public void setCapacity(int capacity) { this.capacity = capacity; }
-
-    public List<Passenger> getPassengers() { return passengers; }
-    public void setPassengers(List<Passenger> passengers) { this.passengers = passengers; }
 
     public List<Airport> getAirports() { return airports; }
     public void setAirports(List<Airport> airports) { this.airports = airports; }

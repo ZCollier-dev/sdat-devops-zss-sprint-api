@@ -10,7 +10,6 @@ import java.util.List;
 public class Airline {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name; // Air Canada
