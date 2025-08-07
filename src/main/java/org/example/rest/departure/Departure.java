@@ -23,7 +23,7 @@ public class Departure {
     private Flight flight;
 
     // Destination Airport
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "airport_id")
     @JsonBackReference
     private Airport airport;

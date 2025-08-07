@@ -23,7 +23,7 @@ public class Flight {
     @JoinColumn(name = "arrival_id")
     private Arrival arrival;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "aircraft_id")
     private Aircraft aircraft;
 
