@@ -1,25 +1,32 @@
-# Build stage
-FROM maven:3.9.8-eclipse-temurin-23 AS builder
-WORKDIR /app
-
-# Cache dependencies
-COPY pom.xml .
-RUN --mount=type=cache,target=/root/.m2 mvn -q -e dependency:go-offline
-
-# Copy sources and build (skip tests for faster image)
-COPY . .
-RUN --mount=type=cache,target=/root/.m2 mvn -q -e clean package -DskipTests
-
-# Run stage
-FROM eclipse-temurin:23-jre
-WORKDIR /app
-
-# Add a non-root user for security
-RUN useradd -ms /bin/bash spring && chown -R spring:spring /app
-USER spring
-
-# Copy boot jar
-COPY --from=builder /app/target/*.jar app.jar
-
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+# ---------- Build stage (Java 23 + Maven) ----------
+    FROM openjdk:23-jdk AS builder
+    ENV DEBIAN_FRONTEND=noninteractive
+    
+    # Install Maven
+    RUN apt-get update \
+     && apt-get install -y --no-install-recommends maven \
+     && rm -rf /var/lib/apt/lists/*
+    
+    WORKDIR /app
+    
+    # Cache Maven dependencies
+    COPY pom.xml .
+    RUN mvn -B -q -e dependency:go-offline
+    
+    # Copy all sources and build
+    COPY . .
+    RUN mvn -B -q -e clean package -DskipTests
+    
+    # ---------- Runtime stage (Java 23 JRE) ----------
+    FROM openjdk:23-jre
+    WORKDIR /app
+    
+    # Security: run as non-root
+    RUN useradd -ms /bin/bash spring && chown -R spring:spring /app
+    USER spring
+    
+    COPY --from=builder /app/target/*.jar /app/app.jar
+    
+    EXPOSE 8080
+    ENTRYPOINT ["java","-jar","/app/app.jar"]
+    
