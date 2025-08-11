@@ -1,5 +1,5 @@
 # ---------- Build stage (Java 23 + Maven) ----------
-    FROM openjdk:23-jdk AS builder
+    FROM openjdk:23-bullseye AS builder
     ENV DEBIAN_FRONTEND=noninteractive
     
     # Install Maven
@@ -18,7 +18,7 @@
     RUN mvn -B -q -e clean package -DskipTests
     
     # ---------- Runtime stage (Java 23 JRE) ----------
-    FROM openjdk:23-jre
+    FROM openjdk:23-bullseye
     WORKDIR /app
     
     # Security: run as non-root
