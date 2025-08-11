@@ -1,8 +1,6 @@
 # ---------- Build stage (Java 23 + Maven) ----------
     FROM eclipse-temurin:23-jdk AS builder
     ENV DEBIAN_FRONTEND=noninteractive
-    
-    # Install Maven
     RUN apt-get update \
      && apt-get install -y --no-install-recommends maven \
      && rm -rf /var/lib/apt/lists/*
@@ -21,11 +19,10 @@
     FROM eclipse-temurin:23-jre
     WORKDIR /app
     
-    # (Optional) run as non-root
+    # Run as non-root (portable & safer)
     RUN useradd -ms /bin/bash spring && chown -R spring:spring /app
     USER spring
     
-    # Copy fat jar from builder
     COPY --from=builder /app/target/*.jar /app/app.jar
     
     EXPOSE 8080
