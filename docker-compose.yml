@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    container_name: sprint_api_db
+    environment:
+      MYSQL_ROOT_PASSWORD: "1two3Four5s!x78"
+      MYSQL_DATABASE: airport_db
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: "app-pass"
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p1two3Four5s!x78"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    container_name: sprint_api_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_USER: appuser
+      DB_PASS: "app-pass"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:
