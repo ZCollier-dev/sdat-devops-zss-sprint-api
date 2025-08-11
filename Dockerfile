@@ -1,25 +1,27 @@
 # ---------- Build stage (Java 23 + Maven) ----------
-    FROM eclipse-temurin:23-jdk AS builder
+    FROM openjdk:23-jdk AS builder
     ENV DEBIAN_FRONTEND=noninteractive
+    
+    # Install Maven
     RUN apt-get update \
      && apt-get install -y --no-install-recommends maven \
      && rm -rf /var/lib/apt/lists/*
     
     WORKDIR /app
     
-    # Cache deps
+    # Cache Maven dependencies
     COPY pom.xml .
     RUN mvn -B -q -e dependency:go-offline
     
-    # Build
+    # Copy all sources and build
     COPY . .
     RUN mvn -B -q -e clean package -DskipTests
     
     # ---------- Runtime stage (Java 23 JRE) ----------
-    FROM eclipse-temurin:23-jre
+    FROM openjdk:23-jre
     WORKDIR /app
     
-    # Run as non-root (portable & safer)
+    # Security: run as non-root
     RUN useradd -ms /bin/bash spring && chown -R spring:spring /app
     USER spring
     
