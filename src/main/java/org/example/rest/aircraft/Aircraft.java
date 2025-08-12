@@ -2,15 +2,12 @@ package org.example.rest.aircraft;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import org.example.rest.airline.Airline;
 import org.example.rest.airport.Airport;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import org.example.rest.flight.Flight;
 
 @Entity
 public class Aircraft {
@@ -28,7 +25,12 @@ public class Aircraft {
         joinColumns = @JoinColumn(name = "aircraft_id"),
         inverseJoinColumns = @JoinColumn(name = "airport_id")
     )
+    @JsonBackReference
     private List<Airport> airports;
+
+    @OneToMany(mappedBy = "aircraft")
+    @JsonBackReference
+    private List<Flight> flights;
 
     @ManyToOne
     @JoinColumn(name = "airline_id")
@@ -46,6 +48,9 @@ public class Aircraft {
 
     public List<Airport> getAirports() { return airports; }
     public void setAirports(List<Airport> airports) { this.airports = airports; }
+
+    public List<Flight> getFlights(){ return flights; }
+    public void setFlights(List<Flight> flights){ this.flights = flights;}
 
     public Airline getAirline(){
         return airline;
