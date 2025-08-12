@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.example.rest.airport.Airport;
 import org.example.rest.flight.Flight;
+import org.example.rest.gate.Gate;
 
 import java.util.Calendar;
 
@@ -24,9 +25,9 @@ public class Departure {
 
     // Destination Airport
     @ManyToOne
-    @JoinColumn(name = "airport_id")
+    @JoinColumn(name = "gate_id")
     @JsonBackReference
-    private Airport airport;
+    private Gate gate;
 
     public Long getId(){
         return id;
@@ -56,10 +57,10 @@ public class Departure {
         this.flight = flight;
     }
 
-    public Airport getAirport(){
-        return airport;
+    public Gate getGate(){
+        return gate;
     }
-    public void setAirport(Airport airport){
-        this.airport = airport;
+    public void setGate(Gate gate){
+        this.gate = gate;
     }
 }

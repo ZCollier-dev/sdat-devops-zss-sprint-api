@@ -1,9 +1,14 @@
 package org.example.rest.gate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.example.rest.airport.Airport;
 
 import jakarta.persistence.*;
+import org.example.rest.arrival.Arrival;
+import org.example.rest.departure.Departure;
+
+import java.util.List;
 
 @Entity
 public class Gate {
@@ -12,6 +17,14 @@ public class Gate {
     private Long id;
 
     private String gateNumber;
+
+    @OneToMany(mappedBy = "gate", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Departure> departures;
+
+    @OneToMany(mappedBy = "gate", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Arrival> arrivals;
 
     @ManyToOne
     @JoinColumn(name = "airport_id")
