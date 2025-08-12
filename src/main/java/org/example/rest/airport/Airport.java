@@ -36,10 +36,10 @@ public class Airport {
 
     /** Many airports can be visited by many aircraft */
     @ManyToMany(mappedBy = "airports", fetch = FetchType.LAZY)
-    @JsonIgnore // Avoid loops when serializing aircraft
+    @JsonManagedReference // Avoid loops when serializing aircraft
     private List<Aircraft> aircraft;
 
-    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "airports", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Gate> gates;
 

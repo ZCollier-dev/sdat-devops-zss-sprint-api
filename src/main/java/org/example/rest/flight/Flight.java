@@ -1,6 +1,7 @@
 package org.example.rest.flight;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.example.rest.aircraft.Aircraft;
 import org.example.rest.arrival.Arrival;
@@ -25,6 +26,7 @@ public class Flight {
 
     @ManyToOne
     @JoinColumn(name = "aircraft_id")
+    @JsonManagedReference
     private Aircraft aircraft;
 
     @ManyToMany(mappedBy = "flights")
