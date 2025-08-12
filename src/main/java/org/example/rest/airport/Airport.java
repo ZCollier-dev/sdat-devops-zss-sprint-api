@@ -43,14 +43,6 @@ public class Airport {
     @JsonManagedReference
     private List<Gate> gates;
 
-    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Departure> departures;
-
-    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Arrival> arrivals;
-
     // Getters / Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -75,19 +67,5 @@ public class Airport {
     }
     public void setGates(List<Gate> gates){
         this.gates = gates;
-    }
-
-    public List<Departure> getDepartures(){
-        return departures;
-    }
-    public void setDepartures(List<Departure> departures){
-        this.departures = departures;
-    }
-
-    public List<Arrival> getArrivals(){
-        return arrivals;
-    }
-    public void setArrivals(List<Arrival> arrivals){
-        this.arrivals = arrivals;
     }
 }
