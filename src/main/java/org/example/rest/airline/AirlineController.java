@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/airlines")
+@RequestMapping("/airline")
 public class AirlineController {
 
     @Autowired
