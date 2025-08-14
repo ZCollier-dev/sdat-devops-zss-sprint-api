@@ -11,6 +11,9 @@ import org.example.rest.passenger.Passenger;
 import org.example.rest.aircraft.AircraftRepository;
 import org.example.rest.city.CityRepository;
 import org.example.rest.passenger.PassengerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +22,9 @@ public class QueryService {
     private final CityRepository      cityRepo;
     private final PassengerRepository passengerRepo;
     private final AircraftRepository  aircraftRepo;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     public QueryService(CityRepository cityRepo,
                         PassengerRepository passengerRepo,
@@ -76,4 +82,12 @@ public class QueryService {
         }
         return out;
     }
+
+    /* Check for DB readiness */
+    public ResponseEntity checkDB(){try {
+        jdbcTemplate.queryForObject("SELECT 1", Integer.class);
+        return ResponseEntity.ok("DB is up");
+    } catch (Exception e) {
+        return ResponseEntity.status(500).body("DB is down");
+    }}
 }
