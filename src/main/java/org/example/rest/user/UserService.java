@@ -53,7 +53,8 @@ public class UserService {
     }
 
     public User createNewUser(User user){
-        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-        return userRepo.save(user);
+        User newUser = user;
+        newUser.setPassword(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
+        return userRepo.save(newUser);
     }
 }
