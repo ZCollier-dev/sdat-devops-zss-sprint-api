@@ -13,8 +13,8 @@ public class APUserController {
     private APUserService APUserService;
 
     @PostMapping("/auth/login")
-    public ResponseEntity authenticateUser(@RequestBody String email, @RequestBody String password){
-        return APUserService.authenticateUser(email, password);
+    public ResponseEntity authenticateUser(@RequestBody APUser user){
+        return APUserService.authenticateUser(user);
     }
 
     @PostMapping("/user")
