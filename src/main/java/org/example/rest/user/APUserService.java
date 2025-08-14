@@ -15,15 +15,15 @@ import java.util.Map;
 import java.util.Date;
 
 @Service
-public class UserService {
+public class APUserService {
 
     @Autowired
-    private UserRepository userRepo;
+    private APUserRepository APUserRepo;
 
     private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    public User findUserByEmail(String email){
-        return userRepo.findByEmail(email);
+    public APUser findUserByEmail(String email){
+        return APUserRepo.findByEmail(email);
     }
 
     private String generateToken(String email){
@@ -39,7 +39,7 @@ public class UserService {
     }
 
     public ResponseEntity authenticateUser(String email, String password){
-            User foundUser = findUserByEmail(email);
+            APUser foundUser = findUserByEmail(email);
 
             if (foundUser != null && BCrypt.checkpw(password, foundUser.getPassword())){
                 return ResponseEntity
@@ -52,9 +52,9 @@ public class UserService {
             }
     }
 
-    public User createNewUser(User user){
-        User newUser = user;
+    public APUser createNewUser(APUser user){
+        APUser newUser = user;
         newUser.setPassword(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
-        return userRepo.save(newUser);
+        return APUserRepo.save(newUser);
     }
 }

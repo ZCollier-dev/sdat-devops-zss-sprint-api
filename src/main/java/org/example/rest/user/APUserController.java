@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping
-public class UserController {
+public class APUserController {
 
     @Autowired
-    private UserService userService;
+    private APUserService APUserService;
 
     @PostMapping("/auth/login")
     public ResponseEntity authenticateUser(@RequestBody String email, @RequestBody String password){
-        return userService.authenticateUser(email, password);
+        return APUserService.authenticateUser(email, password);
     }
 
     @PostMapping("/user")
-    public User createNewUser(@RequestBody User user){
-        return userService.createNewUser(user);
+    public APUser createNewUser(@RequestBody APUser user){
+        return APUserService.createNewUser(user);
     }
 }
