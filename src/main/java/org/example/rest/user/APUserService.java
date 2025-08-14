@@ -38,13 +38,13 @@ public class APUserService {
                 .compact();
     }
 
-    public ResponseEntity authenticateUser(String email, String password){
-            APUser foundUser = findUserByEmail(email);
+    public ResponseEntity authenticateUser(APUser user){
+            APUser foundUser = findUserByEmail(user.getEmail());
 
-            if (foundUser != null && BCrypt.checkpw(password, foundUser.getPassword())){
+            if (foundUser != null && BCrypt.checkpw(user.getPassword(), foundUser.getPassword())){
                 return ResponseEntity
                         .status(HttpStatus.OK)
-                        .body(Map.of("token", generateToken(email)));
+                        .body(Map.of("token", generateToken(user.getEmail())));
             } else {
                 return ResponseEntity
                         .status(HttpStatus.UNAUTHORIZED)
