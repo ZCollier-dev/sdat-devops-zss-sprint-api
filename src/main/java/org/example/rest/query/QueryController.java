@@ -1,6 +1,7 @@
 package org.example.rest.query;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class QueryController {
     }
 
     @GetMapping("/db-check")
-    public ResponseEntity checkDB(){
-        return queryService.checkDB();
+    public Map<String, Object> checkDB(){
+        return queryService.checkDb();
     }
 }

@@ -1,7 +1,9 @@
 package org.example.rest.query;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.example.rest.aircraft.Aircraft;
 import org.example.rest.airport.Airport;
@@ -12,7 +14,6 @@ import org.example.rest.aircraft.AircraftRepository;
 import org.example.rest.city.CityRepository;
 import org.example.rest.passenger.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -84,10 +85,20 @@ public class QueryService {
     }
 
     /* Check for DB readiness */
-    public ResponseEntity checkDB(){try {
-        jdbcTemplate.queryForObject("SELECT 1", Integer.class);
-        return ResponseEntity.ok("DB is up");
-    } catch (Exception e) {
-        return ResponseEntity.status(500).body("DB is down");
-    }}
+    public Map<String, Object> checkDb() {
+        try {
+            jdbcTemplate.queryForObject("SELECT 1", Integer.class);
+            return Map.of(
+                    "components", Map.of(
+                            "db", Map.of("status", "UP")
+                    )
+            );
+        } catch (Exception e) {
+            return Map.of(
+                    "components", Map.of(
+                            "db", Map.of("status", "DOWN")
+                    )
+            );
+        }
+    }
 }
