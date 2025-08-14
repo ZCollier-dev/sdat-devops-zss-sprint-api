@@ -37,7 +37,7 @@ public class QueryController {
         return queryService.getAirportsByPassenger();
     }
 
-    @GetMapping
+    @GetMapping("/db-check")
     public ResponseEntity checkDB(){
         return queryService.checkDB();
     }
