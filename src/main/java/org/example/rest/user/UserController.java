@@ -16,4 +16,9 @@ public class UserController {
     public ResponseEntity authenticateUser(@RequestBody String email, @RequestBody String password){
         return userService.authenticateUser(email, password);
     }
+
+    @PostMapping("/user")
+    public User createNewUser(@RequestBody User user){
+        return userService.createNewUser(user);
+    }
 }

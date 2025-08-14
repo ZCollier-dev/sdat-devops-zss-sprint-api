@@ -51,4 +51,9 @@ public class UserService {
                         .body(Map.of("message", "Invalid credentials"));
             }
     }
+
+    public User createNewUser(User user){
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
+        return userRepo.save(user);
+    }
 }
