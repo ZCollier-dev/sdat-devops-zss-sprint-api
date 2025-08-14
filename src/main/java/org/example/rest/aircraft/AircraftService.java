@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class AircraftService {
     @Autowired
-    AircraftRepository aircraftRepo;
+    private AircraftRepository aircraftRepo;
 
     public List<Aircraft> getAllAircraft(){
         return aircraftRepo.findAll();
