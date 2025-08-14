@@ -3,20 +3,18 @@ package org.example.rest.city;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import org.example.rest.airport.Airport;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import org.example.rest.passenger.Passenger;
 
 @Entity
 public class City {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // you insert id’s manually in data.sql
 
     private String name;

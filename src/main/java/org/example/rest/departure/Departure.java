@@ -3,7 +3,6 @@ package org.example.rest.departure;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.example.rest.airport.Airport;
 import org.example.rest.flight.Flight;
 import org.example.rest.gate.Gate;
 
@@ -13,6 +12,7 @@ import java.util.Calendar;
 public class Departure {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Calendar departureTime;
