@@ -13,6 +13,7 @@ import org.example.rest.flight.Flight;
 public class Aircraft {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String model;     // matches “model” in data.sql
