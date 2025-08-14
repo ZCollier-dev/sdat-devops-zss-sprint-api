@@ -1,10 +1,13 @@
 package org.example.rest.airline;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class AirlineService {
+
+    @Autowired
     private AirlineRepository airlineRepo;
 
     public List<Airline> getAllAirlines() {

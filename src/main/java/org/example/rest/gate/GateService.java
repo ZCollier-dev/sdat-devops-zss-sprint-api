@@ -1,12 +1,14 @@
 package org.example.rest.gate;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class GateService {
-    
+
+    @Autowired
     private GateRepository gateRepo;
 
     public List<Gate> getAllGates() {
