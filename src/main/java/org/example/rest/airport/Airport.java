@@ -39,7 +39,7 @@ public class Airport {
     @JsonManagedReference // Avoid loops when serializing aircraft
     private List<Aircraft> aircraft;
 
-    @OneToMany(mappedBy = "airports", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Gate> gates;
 
