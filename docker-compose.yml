@@ -12,3 +12,4 @@ services:
       DB_PORT: 3306
       DB_USER: root
       DB_PASS: 1two3Four5s!x78
+      SERVER_ADDRESS: 0.0.0.0
