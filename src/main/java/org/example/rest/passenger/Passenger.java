@@ -26,7 +26,6 @@ public class Passenger {
         joinColumns = @JoinColumn(name = "passenger_id"),
         inverseJoinColumns = @JoinColumn(name = "airport_id")
     )
-    @JsonIgnore
     private List<Airport> airports;
 
     @ManyToMany
