@@ -28,6 +28,11 @@ public class AirportController {
         return airportService.updateAirport(id, airport);
     }
 
+    @PutMapping("/link-aircraft/{airport_id}")
+    public Airport linkAircraft(@PathVariable Long airport_id, @RequestBody Long right){
+        return airportService.linkAirportToAircraft(airport_id, right);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         airportService.deleteAirport(id);
