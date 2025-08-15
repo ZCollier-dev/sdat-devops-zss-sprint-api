@@ -28,6 +28,16 @@ public class PassengerController {
         return passengerService.updatePassenger(id, passenger);
     }
 
+    @PutMapping("/link-airport/{passenger_id}")
+    public Passenger linkAirport(@PathVariable Long passenger_id, @RequestBody Long right){
+        return passengerService.linkPassengerToAirport(passenger_id, right);
+    }
+
+    @PutMapping("/link-flight/{passenger_id}")
+    public Passenger linkFlight(@PathVariable Long passenger_id, @RequestBody Long right){
+        return passengerService.linkPassengerToFlight(passenger_id, right);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         passengerService.deletePassenger(id);
