@@ -27,7 +27,7 @@ public class Airport {
     /** Many airports belong to one city */
     @ManyToOne
     @JoinColumn(name = "city_id")
-    @JsonBackReference // Prevent circular serialization with City
+    @JsonManagedReference // Prevent circular serialization with City
     private City city;
 
     /** Many airports can be visited by many passengers */
@@ -41,7 +41,7 @@ public class Airport {
     private List<Aircraft> aircraft;
 
     @OneToMany(mappedBy = "airport", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Gate> gates;
 
     // Getters / Setters

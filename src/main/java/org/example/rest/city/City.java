@@ -2,6 +2,7 @@ package org.example.rest.city;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.example.rest.airport.Airport;
@@ -22,7 +23,7 @@ public class City {
     private int population;
 
     @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Airport> airports;
 
     @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)

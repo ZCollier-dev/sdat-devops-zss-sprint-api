@@ -1,7 +1,9 @@
 package org.example.rest.gate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.example.rest.airport.Airport;
 
 import jakarta.persistence.*;
@@ -20,16 +22,16 @@ public class Gate {
     private String gateNumber;
 
     @OneToMany(mappedBy = "gate", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Departure> departures;
 
     @OneToMany(mappedBy = "gate", fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Arrival> arrivals;
 
     @ManyToOne
     @JoinColumn(name = "airport_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Airport airport;
 
     public Long getId() {
