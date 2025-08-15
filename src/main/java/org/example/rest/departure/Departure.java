@@ -1,7 +1,6 @@
 package org.example.rest.departure;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import org.example.rest.flight.Flight;
 import org.example.rest.gate.Gate;
@@ -9,6 +8,10 @@ import org.example.rest.gate.Gate;
 import java.util.Calendar;
 
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Departure {
 
     @Id
@@ -20,13 +23,12 @@ public class Departure {
 
     @OneToOne
     @JoinColumn(name = "flight_id")
-    @JsonIgnore
     private Flight flight;
 
     // Destination Airport Gate
     @ManyToOne
     @JoinColumn(name = "gate_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Gate gate;
 
     public Long getId(){
